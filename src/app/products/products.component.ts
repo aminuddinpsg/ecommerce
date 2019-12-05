@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { CartItem } from '../models/cart-item';
 import { ProductService } from '../services/product.service';
 import { CartItemService } from '../services/cart-item.service';
+import { SharedService } from '../services/shared.service';
 
 
 @Component({
@@ -22,12 +23,14 @@ export class ProductsComponent implements OnInit {
 
   private productService: ProductService;
   private cartItemService: CartItemService;
+  private sharedService: SharedService;
 
-  constructor(productService: ProductService, cartItemService: CartItemService) {
+  constructor(productService: ProductService, cartItemService: CartItemService, sharedService: SharedService) {
     this.colspan = 2;
     this.galleryView = true;
     this.productService = productService;
     this.cartItemService = cartItemService;
+    this.sharedService = sharedService;
   }
 
   ngOnInit() {
@@ -41,9 +44,11 @@ export class ProductsComponent implements OnInit {
     let requiredQuantity: number = event.requiredQuantity;
     //let cartItem = new CartItem(0, product, requiredQuantity);
     this.cartItemService.save(new CartItem(0, product, requiredQuantity)).subscribe((cartItem: CartItem) => {
-      this.message = "Product " + product.name + " successfully added. Required quantity: " + requiredQuantity;
-    });
-
+      this.cartItemService.getCartItems().subscribe((cartItems: CartItem[]) => {
+        this.sharedService.updateCount(cartItems.length);
+        this.message = "Product " + product.name + " successfully added. Required quantity: " + requiredQuantity;
+      })
+    })
   }
 
   changeView() {

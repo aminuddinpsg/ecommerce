@@ -1,3 +1,4 @@
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
 <div class="row">
   <div class="col-md-12">
     <table class="table table-bordered">
@@ -21,8 +22,8 @@
             value="{{ cartItem.requiredQuantity }}" />&nbsp;</td>
         <td>{{ cartItem.product.price }}</td>
         <td>
-            <button class="btn btn-primary">Update</button>&nbsp;
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-primary" (click)="update(cartItem,requiredQuantity.value)">Update</button>&nbsp;
+            <button class="btn btn-danger" (click)="delete(cartItem.id)">Delete</button>
         </td>
       </tr>
     </table>

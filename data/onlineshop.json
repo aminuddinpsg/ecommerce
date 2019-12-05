@@ -57,6 +57,19 @@
   ],
   "shoppingcart": [
     {
+      "id": 1,
+      "product": {
+        "id": 1,
+        "name": "Television",
+        "description": "To watch",
+        "price": 1000,
+        "quantity": 4,
+        "source": "US",
+        "photo": "https://i.gadgets360cdn.com/products/large/jvc-32n3105c-db-800x600-1560495580.jpg"
+      },
+      "requiredQuantity": "5"
+    },
+    {
       "id": 2,
       "product": {
         "id": 2,
@@ -67,8 +80,16 @@
         "source": "MY",
         "photo": "https://voxamps.com/wp-content/uploads/glams/ACRADIO_Gallery_800x600-2.jpg"
       },
-      "requiredQuantity": "2"
+      "requiredQuantity": "1"
     }
   ],
-  "user": []
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Jega",
+      "lastName": "Navi",
+      "email": "Jega@gmail.com",
+      "password": "Jega"
+    }
+  ]
 }

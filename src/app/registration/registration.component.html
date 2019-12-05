@@ -1,53 +1,62 @@
 <div class="card" *ngIf="view === 'form'">
-  <div class="card-body">
-    <h4 class="card-title">Registration</h4>
-    <hr />
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="firstName"
-        [(ngModel)]="user.firstName">
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastName"
-        [(ngModel)]="user.lastName">
-    </div>
-    <div class="form-group">
-      <label for="email">E-Mail</label>
-      <input type="text" class="form-control" id="email" name="email" placeholder="email" [(ngModel)]="user.email">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="password"
-        [(ngModel)]="user.password">
-    </div>
-    <div class="form-group">
-      <button class="btn btn-success" (click)="doRegister()">Register</button>
-    </div>
-  </div>
-</div>
-<div class="card" *ngIf="view === 'confirmation'">
-  <div class="card-body">
-    <h4 class="card-title">Thank you for register with us</h4>
-    <hr />
-    <div class="form-group">
-      <label for="firstName">First Name</label><br>
-      <label for="firstName">{{ user.firstName }}</label>
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label><br>
-      <label for="firstName">{{ user.lastName }}</label>
-    </div>
-    <div class="form-group">
-      <label for="email">E-Mail</label><br>
-      <label for="firstName">{{ user.email }}</label>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label><br>
-      <label for="firstName">{{ user.password }}</label>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-success" (click)="home()">Back</button>
+    <div class="card-body">
+      <h4 class="card-title">Registration</h4>
+      <hr />
+      <form #registrationForm=ngForm>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" #trfirstname=ngModel placeholder="firstName"
+          [(ngModel)]="user.firstName" required>
+          <div [hidden]="trfirstname.value || trfirstname.pristine " class="alert alert-danger">First Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastName"
+          [(ngModel)]="user.lastName" #trlastname=ngModel required>
+          <div [hidden]="trlastname.value || trlastname.pristine " class="alert alert-danger">Last Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="email" [(ngModel)]="user.email" #tremail=ngModel required>
+        <div [hidden]="tremail.value || tremail.pristine " class="alert alert-danger">E-mail is required</div>  
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="password"
+          [(ngModel)]="user.password" #trpassword=ngModel required>
+          <div [hidden]="trpassword.value || trpassword.pristine " class="alert alert-danger">Password is required</div>         
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" (click)="doRegister()" [disabled]="!registrationForm.form.valid">Register</button>
+      </div>
+    </form>
     </div>
   </div>
-</div>
+  <div class="card" *ngIf="view === 'confirmation'">
+    <div class="card-body">
+      <h4 class="card-title">Thank you for register with us</h4>
+      <hr />
+      <div class="form-group">
+        <label for="firstName">First Name</label><br>
+        <label for="firstName">{{ user.firstName }}</label>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label><br>
+        <label for="firstName">{{ user.lastName }}</label>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label><br>
+        <label for="firstName">{{ user.email }}</label>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label><br>
+        <label for="firstName">{{ user.password }}</label>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" (click)="home()">Back</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- {{ myfirstname.className }} -->

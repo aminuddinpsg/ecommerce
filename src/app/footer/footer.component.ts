@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   public message: string;
+  public currentDate:Date;
+
   constructor() {
-    this.message = 'Copyright &copy; DHL Online Bazzar - 03/12/2019';
+    this.currentDate = new Date();
+    this.message = 'Copyright &copy; DHL Online Bazzar - ';
   }
 
   ngOnInit() {

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+
+      <tr>
+        <th>No.</th>
+        <th colspan="2">Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let cartItem of shoppingCart; let counter = index">
+        <td>{{ counter + 1 }}</td>
+        <td><img [src]="cartItem.product.photo" class="img-thumbnail" width="150" /></td>
+        <td>
+          <h5>{{ cartItem.product.name }}</h5>
+          <p>{{ cartItem.product.description }}</p>
+          <p>{{ cartItem.product.source }}</p>
+        </td>
+        <td> <input type="text" name="requiredQuantity" maxlength="3" size="3" #requiredQuantity
+            value="{{ cartItem.requiredQuantity }}" />&nbsp;</td>
+        <td>{{ cartItem.product.price }}</td>
+        <td>
+            <button class="btn btn-primary">Update</button>&nbsp;
+            <button class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

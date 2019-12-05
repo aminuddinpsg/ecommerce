@@ -1,0 +1,42 @@
+<div class="alert alert-success" *ngIf="message">{{ message }}</div>
+<div class="row" [style.padding-bottom]="'10px'">
+  <div class="col-md-11">
+    <input type="text" class="form-control" (keyup)="search($event)" />
+    <table class="table table-bordered">
+      <tr *ngFor="let product of searchResults; let counter = index" app-product [view]="'list'" [counter]="counter"
+        [product]="product" (notify)="addToCart($event)">
+      </tr>
+    </table>
+    <div>
+      <ol>
+        <li *ngFor="let product of searchResults">{{ product.name }}</li>
+      </ol>
+    </div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-secondary" [style.float]="'right'" *ngIf="galleryView" (click)="changeView()">List</button>
+    <button class="btn btn-secondary" [style.float]="'right'" *ngIf="!galleryView"
+      (click)="changeView()">Gallery</button>
+  </div>
+</div>
+<div class="row" *ngIf="galleryView">
+  <div class="col-md-4" *ngFor="let product of products" style="padding-bottom: 15px;" app-product [view]="'gallery'"
+    [product]="product" (notify)="addToCart($event)">
+  </div>
+</div>
+<div class="row" *ngIf="!galleryView">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <tr>
+        <th>No.</th>
+        <th [attr.colspan]="colspan">Product</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let product of products; let counter = index" app-product [view]="'list'" [counter]="counter"
+        [product]="product" (notify)="addToCart($event)">
+      </tr>
+    </table>
+  </div>
+</div>

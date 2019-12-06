@@ -2,6 +2,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductManageComponent } from './product-manage/product-manage.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,8 +11,12 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HeaderComponent,
-        ProductsComponent
+        ProductsComponent,
+        ProductManageComponent
       ],
+      imports: [FormsModule,
+        ReactiveFormsModule
+      ]
     }).compileComponents();
   }));
 

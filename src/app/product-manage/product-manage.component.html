@@ -1,0 +1,56 @@
+<div>
+  <form id="productForm" [formGroup]="productForm">
+    <input type="hidden" class="form-control" formControlName="id">
+    <div class="form-group">
+      <label>Product Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <div *ngIf="productForm.controls['name'].errors && !productForm.controls['name'].pristine">
+        <div *ngIf="productForm.controls['name'].errors.required" class="alert alert-danger">Name is Required</div>
+        <div *ngIf="productForm.controls['name'].errors.minlength" class="alert alert-danger">Name must be atleast 6
+          characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" class="form-control" formControlName="description" />
+      <div *ngIf="productForm.controls['description'].errors && !productForm.controls['description'].pristine">
+        <div *ngIf="productForm.controls['description'].errors.required" class="alert alert-danger">Description is
+          Required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="text" class="form-control" formControlName="quantity" />
+      <div *ngIf="productForm.controls['quantity'].errors && !productForm.controls['quantity'].pristine">
+        <div *ngIf="productForm.controls['quantity'].errors.required" class="alert alert-danger">Quantity is Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="text" class="form-control" formControlName="price" />
+      <div *ngIf="productForm.controls['price'].errors && !productForm.controls['price'].pristine">
+        <div *ngIf="productForm.controls['price'].errors.required" class="alert alert-danger">Price is Required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Source</label>
+      <input type="text" class="form-control" formControlName="source" />
+      <div *ngIf="productForm.controls['source'].errors && !productForm.controls['source'].pristine">
+        <div *ngIf="productForm.controls['source'].errors.required" class="alert alert-danger">Source is Required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Photo</label>
+      <input type="text" class="form-control" formControlName="photo" />
+      <div *ngIf="productForm.controls['photo'].errors && productForm.controls['photo'].touched">
+        <div *ngIf="productForm.controls['photo'].errors.required" class="alert alert-danger">Photo is Required</div>
+        <div *ngIf="productForm.controls['photo'].errors.photofilenameerror" class="alert alert-danger">Photo name must
+          have png</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success" [disabled]="!productForm.valid" (click)="save()">Save</button>
+    </div>
+  </form>
+</div>

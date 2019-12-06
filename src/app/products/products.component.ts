@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../models/product';
-import { CartItem } from '../models/cart-item';
 import { ProductService } from '../services/product.service';
-import { CartItemService } from '../services/cart-item.service';
-
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-products',
@@ -12,53 +9,17 @@ import { CartItemService } from '../services/cart-item.service';
 })
 export class ProductsComponent implements OnInit {
 
-  public products: Product[];
-  public message: string;
-  public colspan: number;
-  public galleryView: boolean;
-  public searchKeyword: string;
-  public searchResults: Product[];
-  public shoppingCart: CartItem[];
-
   private productService: ProductService;
-  private cartItemService: CartItemService;
+  public products: Product[];
 
-  constructor(productService: ProductService, cartItemService: CartItemService) {
-    this.colspan = 2;
-    this.galleryView = true;
+  constructor(productService: ProductService) {
     this.productService = productService;
-    this.cartItemService = cartItemService;
   }
 
   ngOnInit() {
     this.productService.getProducts().subscribe((products: Product[]) => {
       this.products = products;
-    });
+    })
   }
 
-  addToCart(event: CartItem) {
-    let product: Product = event.product;
-    let requiredQuantity: number = event.requiredQuantity;
-    //let cartItem = new CartItem(0, product, requiredQuantity);
-    this.cartItemService.save(new CartItem(0, product, requiredQuantity)).subscribe((cartItem: CartItem) => {
-      this.message = "Product " + product.name + " successfully added. Required quantity: " + requiredQuantity;
-    });
-
-  }
-
-  changeView() {
-    this.galleryView = !this.galleryView;
-  }
-
-  search(event: any) {
-    this.searchKeyword = event.target.value;
-    if (this.searchKeyword != "") {
-      let pattern = new RegExp('^' + this.searchKeyword, 'i');
-      this.searchResults = this.products.filter((product: any) => {
-        return pattern.test(product.name);
-      })
-    } else {
-      this.searchResults = [];
-    }
-  }
 }

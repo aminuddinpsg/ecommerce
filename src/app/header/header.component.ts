@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public title: string;
+
   constructor() {
-    this.title = "DHL E-Commerce"
+    this.title = "DHL E-Commerce";
   }
 
   ngOnInit() {

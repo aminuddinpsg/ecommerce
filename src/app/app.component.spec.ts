@@ -1,11 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { ProductsComponent } from './products/products.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        ProductsComponent
       ],
     }).compileComponents();
   }));
@@ -16,16 +20,21 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ecommerce'`, () => {
+  it(`should have as title 'ecommerce-test'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ecommerce');
+    expect(app.title).toEqual('ecommerce-test');
   });
 
-  it('should render title', () => {
+/*   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+    fixture.detectChanges();  //monitor the changes
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ecommerce app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('ecommerce-test app is running!');
+  }); */
+
+  it('Addition', () => {
+    expect(2 + 3).toEqual(5);
   });
+
 });

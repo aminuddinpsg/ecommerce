@@ -1,6 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
+import { ProductService } from '../services/product.service';
+import { Observable, of } from 'rxjs';
+import { Product } from '../models/product';
+
+class MockProductService extends ProductService{
+  // overide the actual service
+  getProducts(): Observable<Product[]> {
+    // convert to Observable
+    return of([
+      { name: "Television" },
+      { name: "Radio" }
+    ]);
+  }
+
+}
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -8,9 +23,11 @@ describe('ProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ]
+      imports :[],
+      declarations: [ProductsComponent],
+      providers:[{provide:ProductService, useClass:MockProductService}] // need to provide when using the service
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +39,9 @@ describe('ProductsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have products list populated', () => {
+    expect(component.products.length).toBeGreaterThan(1);
+  });
+
 });

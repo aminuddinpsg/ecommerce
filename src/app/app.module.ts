@@ -1,38 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core'; 
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { ProductComponent } from './product/product.component';
-import { ProductService } from './services/product.service';
-import { UserService } from './services/user.service';
-import { CartItemService } from './services/cart-item.service';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    ProductsComponent,
-    RegistrationComponent,
-    ProductComponent,
-    ShoppingCartComponent
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService,
-    CartItemService,
-    UserService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { } 
+export class AppModule { }

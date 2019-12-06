@@ -1,3 +1,20 @@
-<app-header></app-header>
-<app-products></app-products>
-<app-product-manage></app-product-manage>
+<h1>Simple Material Form</h1>
+
+<mat-card-content>
+  <form [formGroup]="contactForm">
+    <mat-form-field>
+      <input matInput type="number" id="sequence" name="sequence" formControlName="sequence" placeholder="sequence" min="1" max="999" />
+      <mat-error *ngIf="hasError('sequence','required')">Sequence is required</mat-error>
+      <mat-error *ngIf="hasError('sequence','min')">Sequence min value is 1</mat-error>
+      <mat-error *ngIf="hasError('sequence','max')">Sequence max value is 999</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" id="firstname" name="firstname" formControlName="firstName" placeholder="firstName"  minlength="2" maxlength="50" />
+        <mat-error *ngIf="hasError('firstName','required')">firstname is required</mat-error>
+        <mat-error *ngIf="hasError('firstName','minlength')">firstName min value is 2</mat-error>
+        <mat-error *ngIf="hasError('firstName','maxlength')">firstName max value is 15</mat-error>
+      </mat-form-field>
+  </form>&nbsp;
+  <button mat-raised-button color="primary" [disabled] ='!contactForm.valid' (click)="save()">Save</button>&nbsp;
+  <button mat-raised-button color="warn" [disabled] ='!contactForm.valid' (click)="cancel()">Cancel</button>&nbsp;
+</mat-card-content>
